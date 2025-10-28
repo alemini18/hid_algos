@@ -30,7 +30,6 @@ _SRC_PREFIX = "HIDE:SRC"  # connectivity source
 
 
 def _unique_label(base, existing):
-    """Return a label not present in `existing`, derived from `base`."""
     label = base
     i = 1
     existing_set = set(existing)
