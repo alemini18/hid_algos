@@ -83,13 +83,12 @@ class HypersetAPG:
 
 
 def hide_k_certificate(
-    G,
+    UG,
     k,
     *,
     connect_if_disconnected=True,
     algorithm=Algorithms.DovierPiazzaPolicriti,
 ):
-    UG = _as_undirected_simple(G)
 
     if connect_if_disconnected and not nx.is_connected(UG):
         UG = _make_connected_with_universal_source(UG)
@@ -160,23 +159,6 @@ def hide_k_equivalent(
 # ---------------------------
 # Internal utilities
 # ---------------------------
-
-
-def _as_undirected_simple(
-    G,
-):
-    UG = nx.Graph()
-    UG.add_nodes_from(G.nodes)
-
-    if isinstance(G, (nx.MultiGraph, nx.MultiDiGraph)):
-        undirected_pairs = {
-            tuple(sorted((u, v))) for (u, v, *_) in G.edges(keys=True) if u != v
-        }
-    else:
-        undirected_pairs = {tuple(sorted((u, v))) for (u, v) in G.edges if u != v}
-
-    UG.add_edges_from(undirected_pairs)
-    return UG
 
 
 def _make_connected_with_universal_source(UG):
