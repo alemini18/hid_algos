@@ -19,5 +19,3 @@ def print_certificate(cert, name="certificate"):
         print("Nodes:", list(hyp.graph.nodes))
         print("Edges:", list(hyp.graph.edges))
         print("Point:", hyp.point)
-        if hasattr(hyp, "chosen_classes") and getattr(hyp, "chosen_classes", ()):
-            print("Chosen:", hyp.chosen_classes)
